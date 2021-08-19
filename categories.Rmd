@@ -1,0 +1,92 @@
+---
+title: "Game"
+author: "Andy Wong"
+date: "9/8/2020"
+output:
+  html_document: default
+  word_document: default
+---
+
+```{r setup, comment=""}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, comment=""}
+library(readxl)
+categories <- read_excel("C:/Users/andyw/Desktop/Game.xlsm")
+cat_modified <- categories[-nrow(categories),]
+```
+
+
+```{r , comment=""}
+categories[sample(nrow(categories), 4),]
+```
+
+
+```{r , comment=""}
+replicate(3, categories[sample(nrow(categories), 4),])
+```
+
+
+```{r , comment=""}
+n=1
+for (i in 1:n){
+  print(i)
+  results <- replicate(1, categories[sample(nrow(categories), 4),])
+  print(results)
+}
+```
+
+
+```{r , comment=""}
+n=190
+for (i in 1:n){
+  results_df <- data.frame(replicate(1, categories[sample(nrow(categories), 4),]))
+  colnames(results_df) <- NULL
+  cat("Pool #", i)
+  print(results_df, row.names=FALSE)
+  cat("\n")
+}
+```
+
+
+```{r , comment=""}
+#Special Round #1
+n1=1
+n2=1
+n3=1
+n_mean <- mean(c(n1,n2,n3))
+n_rounded <- round(n_mean,0)
+
+n=n_rounded
+for (i in 1:n){
+  results_df <- data.frame(replicate(1, cat_modified[sample(nrow(cat_modified), 2),]))
+  colnames(results_df) <- NULL
+  cat("Pool #", i)
+  print(results_df, row.names=FALSE)
+  cat("\n")
+}
+```
+
+```{r , comment=""}
+#Special Round #2
+n=1
+players = c("Abaz", "Amanda", "Basma")
+
+for(i in 1:n){
+  player_name <- sample(players,size = 1)
+  cat(i, player_name)
+  cat("\n")
+  cat("\n")
+}
+
+for (i in 1:n){
+  results_df <- data.frame(replicate(1, cat_modified[sample(nrow(cat_modified), 2),]))
+  colnames(results_df) <- NULL
+  cat("Pool #", i)
+  print(results_df, row.names=FALSE)
+  cat("\n")
+}
+
+```
